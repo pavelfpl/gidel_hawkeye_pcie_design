@@ -1,0 +1,41 @@
+# Ignore Quartus II generated files ...
+# -------------------------------------
+*.bak
+*.json
+*.rpt
+# *_pin_model_dump.txt
+# *_summary.csv
+# *description.txt
+# hps_sdram_p0_all_pins.txt
+# hps_sdram_p0_summary.csv
+output_files/*.rpt
+output_files/*.done
+output_files/*.smsg
+output_files/*.summary
+output_files/*.jdi
+output_files/*.pin
+output_files/*.sld
+# sd_fat.tar.gz
+# soc_system.dtb
+# soc_system.dts
+# software/preloader/preloader-mkpimage.bin
+# software/preloader/preloader.ds
+# software/preloader/settings.bsp
+# software/preloader/uboot.ds
+# u-boot.scr
+
+# Ignore Quartus II generated folders ...
+# ---------------------------------------
+db/
+incremental_db/
+greybox_tmp/
+simulation/
+# this next folder should match the base name of the .qsys file
+# sockit-ghrd/
+# software/preloader/uboot-socfpga/
+stamp/
+timing/
+testbench/
+*_sim/
+.qsys_edit/
+

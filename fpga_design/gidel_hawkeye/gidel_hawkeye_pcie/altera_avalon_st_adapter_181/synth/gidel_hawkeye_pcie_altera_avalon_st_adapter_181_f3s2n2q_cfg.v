@@ -1,0 +1,5 @@
+config gidel_hawkeye_pcie_altera_avalon_st_adapter_181_f3s2n2q_cfg;
+		design gidel_hawkeye_pcie_altera_avalon_st_adapter_181_f3s2n2q;
+		instance gidel_hawkeye_pcie_altera_avalon_st_adapter_181_f3s2n2q.error_adapter_0 use gidel_hawkeye_pcie_error_adapter_181.gidel_hawkeye_pcie_error_adapter_181_tmmt7mq;
+endconfig
+

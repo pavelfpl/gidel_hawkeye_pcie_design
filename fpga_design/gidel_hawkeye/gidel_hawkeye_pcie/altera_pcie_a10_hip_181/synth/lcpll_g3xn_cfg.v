@@ -1,0 +1,5 @@
+config lcpll_g3xn_cfg;
+		design lcpll_g3xn;
+		instance lcpll_g3xn.lcpll_g3xn use gidel_hawkeye_pcie_altera_xcvr_atx_pll_a10_181.gidel_hawkeye_pcie_altera_xcvr_atx_pll_a10_181_shiouiy;
+endconfig
+
