@@ -37,6 +37,10 @@ of the FPGA design. Pin planner layout:
 
 ![Pin matrix](https://github.com/pavelfpl/gidel_hawkeye_pcie_design/blob/main/arria10-pin-planner-2.png)
 
+FPGA sof programming procedure:
+
+![FPGA programming](https://github.com/pavelfpl/gidel_hawkeye_pcie_design/blob/main/arria10-sof-programming.png)
+
 ## Linux driver
 
 Linux PCIe driver is delivered with user space driver for evaluation purposes. Driver is working in Memory-mapped mode without DMA, but DMA mode support is planned. DMA is supported
@@ -46,9 +50,51 @@ in Intel Arria 10 PCIe hard core.
 - User space driver for evaluation: [User space driver](linux_drivers/intel_fpga_pcie_user_driver)
 
 ### System prerequsities (Debian Linux):
-- ` sudo apt install build-essential`  (meta-package named build-essential that contains the GCC compiler and other libraries and utilities required for compiling software)
+- `sudo apt install build-essential`  (meta-package named build-essential that contains the GCC compiler and other libraries and utilities required for compiling software)
 - `sudo apt install linux-headers-$(uname -r)`  (Install Linux kernel headers)
   
-Commpilation is very easy, just issue: `make`  
+Commpilation is very easy, just issue: `make` and should produce similar output:  
+
+```
+make -C /lib/modules/6.1.0-0.deb11.21-amd64/build  "-Wno-error=date-time" M=/home/pavelf/gidel_hawkeye_design/linux_drivers/intel_fpga_pcie_driver  modules
+make[1]: Vstupuje se do adresáře „/usr/src/linux-headers-6.1.0-0.deb11.21-amd64“
+  CC [M]  /home/pavelf/gidel_hawkeye_design/linux_drivers/intel_fpga_pcie_driver/intel_fpga_pcie_driver.o
+  MODPOST /home/pavelf/gidel_hawkeye_design/linux_drivers/intel_fpga_pcie_driver/Module.symvers
+  CC [M]  /home/pavelf/gidel_hawkeye_design/linux_drivers/intel_fpga_pcie_driver/intel_fpga_pcie_driver.mod.o
+  LD [M]  /home/pavelf/gidel_hawkeye_design/linux_drivers/intel_fpga_pcie_driver/intel_fpga_pcie_driver.ko
+  BTF [M] /home/pavelf/gidel_hawkeye_design/linux_drivers/intel_fpga_pcie_driver/intel_fpga_pcie_driver.ko
+Skipping BTF generation for /home/pavelf/gidel_hawkeye_design/linux_drivers/intel_fpga_pcie_driver/intel_fpga_pcie_driver.ko due to unavailability of vmlin
+make[1]: Opouští se adresář „/usr/src/linux-headers-6.1.0-0.deb11.21-amd64“
+```
+
+Module called: `intel_fpga_pcie_driver.ko` can be loaded with:  
+`sudo insmod intel_fpga_pcie_driver.ko`  
+and unloaded by:  
+`sudo rmmod intel_fpga_pcie_driver.ko`  
+
+After FPGA programming Linux shoudl see following PCIe device:  
+
+```
+----------------
+lspci -Qkxxxxnnv
+----------------
+01:00.0 Non-VGA unclassified device [0000]: Altera Corporation Device [1172:e003]
+    Physical Slot: 4
+    Flags: bus master, fast devsel, latency 0, IRQ 41, IOMMU group 33
+    Memory at <unassigned> (64-bit, prefetchable)
+    Memory at f3100000 (64-bit, prefetchable) [size=512K]
+    Capabilities: <access denied>
+    Kernel driver in use: intel_altera_pcie
+    00: 72 11 03 e0 06 05 10 00 00 00 00 00 08 00 00 00
+    10: 0c 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+    20: 0c 00 10 f3 00 00 00 00 00 00 00 00 00 00 00 00
+    30: 00 00 00 00 50 00 00 00 00 00 00 00 0b 01 00 00
+```
+
+User space test utility generates simple test data pattern. This pattern will be stored in the On-Chip FPGA RAM memory and read back for comparison purposes:  
+After `make` just issue this command: `sudo ./intel_altera_pcie_test` 
+
+
+
 
 
