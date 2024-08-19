@@ -6,6 +6,9 @@ There are a few models, FPGA Arria 10 GX with transceivers: -16 (160k LE), -48 (
 This card is primary intended for use as algorithm accelerator or 10GB+ SFFP transceiver. FPGA board has undocummented 3x16 pin connectors, but the assignment and logic level
 is not known (needs to be investigated). JTAG connector is available to connect standard Altera USB Blaster.
 
+Main card:
+[Gidel HawkEye 20G] (https://github.com/connorwk/Recycled-FPGAs/wiki/Gidel-HawkEye-20G-Models)
+
 What you can learn/evaluate on this board:
 - PCIe, 10GB+ SFFP ethernet (transceivers)
 - DDR4 Arria 10 interface
