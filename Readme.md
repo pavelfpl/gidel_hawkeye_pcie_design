@@ -7,7 +7,7 @@ This card is primary intended for use as algorithm accelerator or 10GB+ SFFP tra
 is not known (needs to be investigated). JTAG connector is available to connect standard Altera USB Blaster.
 
 Main card:
-![Gidel HawkEye 20G] (https://github.com/connorwk/Recycled-FPGAs/raw/main/photos/gidel_hawkeye_20/front.jpg)
+![Gidel HawkEye 20G](https://github.com/connorwk/Recycled-FPGAs/raw/main/photos/gidel_hawkeye_20/front.jpg)
 
 What you can learn/evaluate on this board:
 - PCIe, 10GB+ SFFP ethernet (transceivers)
